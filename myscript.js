@@ -78,7 +78,7 @@ document.getElementById("delete").onclick = function () {
 
 const btnTeste = document.querySelector("#teste")
 
-let nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone
+let nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone, endereco
 
 // Carrega dados db
 function  dadosDb() {
@@ -90,6 +90,7 @@ function  dadosDb() {
   graduacao = document.querySelector("#graduacao").value
   sexo = document.querySelector("#sexo").value
   telefone = document.querySelector("#telefone").value
+  endereco = document.querySelector("#endereco").value
 }
 
 // testando o acesso e coleta de dados no banco de dados dbKravmaga
@@ -104,23 +105,49 @@ function carregaDados() {
     graduacao = dado.val().graduacao
     sexo = dado.val().sexo
     telefone = dado.val().telefone
-    console.log(nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone)
+    endereco = dado.val().endereco
+    // console.log(nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone, endereco)
 
     // Carrega os campos da página com os dados do banco de dados
     document.querySelector("#nome").value = nome
     document.querySelector("#email").value = email
+    document.querySelector("#endereco").value = endereco
+    document.querySelector("#dataNascimento").value = dataNascimento
+    document.querySelector("#academia").value = academia
+    document.querySelector("#graduacao").value = graduacao
+    document.querySelector("#sexo").value = sexo
+    document.querySelector("#telefone").value = telefone
+
+    firebase.database().ref("dbKravmaga/").on("value", function(snapshot) {
+      let dados = snapshot.val()
+
+      for (let cpfFor in dbKravmagaFor) {
+        console.log(cpfFor)
+        for (let dadoAluno in dbKravmagaFor) {
+          firebase.database().ref("dbKravmaga/"+cpfFor).on("value", function(dadoFor) {
+            console.log(dadoAluno)
+          })
+        }
+      } // fim dados alunos
+
+    })
+
   })
+
 }
+
+  
+
 
 // ------------------------ Carregando dados de um nó em um Objeto ------------------------
-function dadosObj() {
-  dadosDb()
-  firebase.database().ref("dbKravmaga/"+cpf).on('value', function(snapshot) {
-    let dados = snapshot.val()
-    console.log(dados)
-  })
-}
+// function dadosObj() {
+//   dadosDb()
+//   firebase.database().ref("dbKravmaga/"+cpf).on('value', function(snapshot) {
+//     let dados = snapshot.val()
+//     console.log(dados)
+//   })
+// }
 
 
 
-btnTeste.addEventListener("click", dadosObj)
+btnTeste.addEventListener("click", carregaDados)
