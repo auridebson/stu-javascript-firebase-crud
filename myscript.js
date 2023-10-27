@@ -119,15 +119,16 @@ function carregaDados() {
     document.querySelector("#telefone").value = telefone
 
     firebase.database().ref("dbKravmaga/").on("value", function(snapshot) {
-      let dados = snapshot.val()
+      let dbKravmaga = snapshot.val()
 
-      for (let cpfFor in dbKravmagaFor) {
-        console.log(cpfFor)
+      for (let cpf in dbKravmaga) {
         for (let dadoAluno in dbKravmagaFor) {
-          firebase.database().ref("dbKravmaga/"+cpfFor).on("value", function(dadoFor) {
-            console.log(dadoAluno)
+          firebase.database().ref("dbKravmaga/"+cpf).on("value", function(dadoFor) {
+            let info = dadoFor.val()
+            console.log(info)
           })
         }
+        console.log(cpf)
       } // fim dados alunos
 
     })
