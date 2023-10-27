@@ -118,24 +118,25 @@ function carregaDados() {
     document.querySelector("#sexo").value = sexo
     document.querySelector("#telefone").value = telefone
 
-    firebase.database().ref("dbKravmaga/").on("value", function(snapshot) {
-      let dbKravmaga = snapshot.val()
+      firebase.database().ref("dbKravmaga/").on("value", function(snapshot) {
+        let dbKravmaga = snapshot.val()
 
-      for (let cpf in dbKravmaga) {
-        for (let dadoAluno in dbKravmagaFor) {
-          firebase.database().ref("dbKravmaga/"+cpf).on("value", function(dadoFor) {
-            let info = dadoFor.val()
-            console.log(info)
+        for (let cpf in dbKravmaga) {
+          firebase.database().ref("dbKrabmaga"+cpf).on("value", function(alunos) {
+            let aluno = alunos.val()
+
+            for (aluno in alunos) {
+              console.log(aluno, alunos[aluno.value]) 
+            }
           })
         }
-        console.log(cpf)
-      } // fim dados alunos
+          
+        })
 
     })
+  }
 
-  })
 
-}
 
   
 
