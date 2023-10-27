@@ -122,13 +122,12 @@ function carregaDados() {
         let Alunos = idsAlunos.val()
 
         for (let idCpf in Alunos) {
-          console.log(idCpf)
+          console.log('\n--------------------\n'+idCpf+'\n--------------------\n')
           firebase.database().ref("dbKravmaga/"+idCpf).on("value", function(dadosAluno) {
             let dadosCpf = dadosAluno.val()
 
-            for (dadoAluno in dadosCpf) {
-              let campo = dadoAluno
-              console.log(idCpf + " - "+ campo)
+            for (i in dadosCpf) {
+              console.log(i + " - "+ dadosCpf[i])
             }
           })
           
