@@ -105,12 +105,21 @@ function carregaDados() {
     sexo = dado.val().sexo
     telefone = dado.val().telefone
     console.log(nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone)
-    
+
     // Carrega os campos da página com os dados do banco de dados
     document.querySelector("#nome").value = nome
     document.querySelector("#email").value = email
   })
 }
 
+// Carregando dados em um Objeto
+function dadosObj() {
+  dadosDb()
+  firebase.database().ref("dbKravmaga/"+cpf).once('value').then(function(snapshot) {
+    let dados = snapshot.val()
+    console.log(dados)
+  })
+}
 
-btnTeste.addEventListener("click", carregaDados)
+
+btnTeste.addEventListener("click", dadosObj)
