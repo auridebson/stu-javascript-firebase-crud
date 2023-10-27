@@ -112,14 +112,15 @@ function carregaDados() {
   })
 }
 
-// Carregando dados em um Objeto
+// ------------------------ Carregando dados de um nó em um Objeto ------------------------
 function dadosObj() {
   dadosDb()
-  firebase.database().ref("dbKravmaga/"+cpf).once('value').then(function(snapshot) {
+  firebase.database().ref("dbKravmaga/"+cpf).on('value', function(snapshot) {
     let dados = snapshot.val()
     console.log(dados)
   })
 }
+
 
 
 btnTeste.addEventListener("click", dadosObj)
