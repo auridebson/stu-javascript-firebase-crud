@@ -1,4 +1,4 @@
-var rollV, nameV, genderV, addressV;
+let rollV, nameV, genderV, addressV;
 
 function readFom() {
   rollV = document.getElementById("roll").value;
