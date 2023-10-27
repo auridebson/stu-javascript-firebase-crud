@@ -89,18 +89,26 @@ function  dadosDb() {
   graduacao = document.querySelector("#graduacao").value
   sexo = document.querySelector("#sexo").value
   telefone = document.querySelector("#telefone").value
-  alert("Dados Carregados")
 }
 
 // testando o acesso e coleta de dados no banco de dados dbKravmaga
 function carregaDados() {
   dadosDb()
-  firebase.database().ref("dbKravmaga/"+rollV).on("value", function(dados) {
-    nameV = dados.val().nome
-    genderV = dados.val().sexo
-    alert(nameV + " - " + genderV)
+  firebase.database().ref("dbKravmaga/"+cpf).on("value", function(dado) {
+    nome = dado.val().nome
+    cpf = dado.val().cpf
+    email = dado.val().email
+    dataNascimento = dado.val().dataNascimento
+    academia = dado.val().academia
+    graduacao = dado.val().graduacao
+    sexo = dado.val().sexo
+    telefone = dado.val().telefone
+    console.log(nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone)
+    // Carrega os campos da página com os dados do banco de dados
+    document.querySelector("#nome").value = nome
+    document.querySelector("#email").value = email
   })
 }
 
 
-btnTeste.addEventListener("click", dadosDb)
+btnTeste.addEventListener("click", carregaDados)
