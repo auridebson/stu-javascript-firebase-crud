@@ -1,5 +1,7 @@
 let rollV, nameV, genderV, addressV;
 
+const btnTeste = document.querySelector("#teste")
+
 function readFom() {
   rollV = document.getElementById("roll").value;
   nameV = document.getElementById("name").value;
@@ -26,6 +28,18 @@ document.getElementById("insert").onclick = function () {
   document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
 };
+
+
+// testando o acesso e coleta de dados no banco de dados dbKravmaga
+function mensagem() {
+  readFom()
+  firebase.database().ref("dbKravmaga/"+rollV).on("value", function(dados) {
+    nameV = dados.val().nome
+    genderV = dados.val().sexo
+    alert(nameV + " - " + genderV)
+  })
+}
+
 
 document.getElementById("read").onclick = function () {
   readFom();
@@ -72,3 +86,5 @@ document.getElementById("delete").onclick = function () {
   document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
 };
+
+btnTeste.addEventListener("click", mensagem)
