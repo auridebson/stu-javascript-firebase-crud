@@ -2,7 +2,7 @@ body {
   background-color: cornflowerblue;
 }
 .container {
-  width: 400px;
+  width: 500px;
   margin: 50px auto;
   padding: 20px;
   /* border: 2px solid red; */
@@ -31,3 +31,4 @@ button {
   color: white;
   border-radius: 10px;
 }
+

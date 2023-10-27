@@ -1,7 +1,5 @@
 let rollV, nameV, genderV, addressV;
 
-const btnTeste = document.querySelector("#teste")
-
 function readFom() {
   rollV = document.getElementById("roll").value;
   nameV = document.getElementById("name").value;
@@ -30,15 +28,7 @@ document.getElementById("insert").onclick = function () {
 };
 
 
-// testando o acesso e coleta de dados no banco de dados dbKravmaga
-function mensagem() {
-  readFom()
-  firebase.database().ref("dbKravmaga/"+rollV).on("value", function(dados) {
-    nameV = dados.val().nome
-    genderV = dados.val().sexo
-    alert(nameV + " - " + genderV)
-  })
-}
+
 
 
 document.getElementById("read").onclick = function () {
@@ -87,4 +77,34 @@ document.getElementById("delete").onclick = function () {
   document.getElementById("address").value = "";
 };
 
-btnTeste.addEventListener("click", mensagem)
+
+// ---------------------------------------------------
+
+const btnTeste = document.querySelector("#teste")
+let nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone
+
+// Carrega dados db
+const  dadosDb = () => {
+  nome = document.querySelector("#nome").value
+  cpf = document.querySelector("#cpf").value
+  email = document.querySelector("#email").value
+  dataNascimento = document.querySelector("#dataNascimento").value
+  academia = document.querySelector("#academia").value
+  graduacao = document.querySelector("#graduacao").value
+  sexo = document.querySelector("#sexo").value
+  telefone = document.querySelector("#telefone").value
+  alert("Dados Carregados")
+}
+
+// testando o acesso e coleta de dados no banco de dados dbKravmaga
+function carregaDados() {
+  dadosDb()
+  firebase.database().ref("dbKravmaga/"+rollV).on("value", function(dados) {
+    nameV = dados.val().nome
+    genderV = dados.val().sexo
+    alert(nameV + " - " + genderV)
+  })
+}
+
+
+btnTeste.addEventListener("click", dadosDb)
