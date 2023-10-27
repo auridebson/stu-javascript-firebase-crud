@@ -27,10 +27,6 @@ document.getElementById("insert").onclick = function () {
   document.getElementById("address").value = "";
 };
 
-
-
-
-
 document.getElementById("read").onclick = function () {
   readFom();
 
@@ -84,7 +80,7 @@ const btnTeste = document.querySelector("#teste")
 let nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone
 
 // Carrega dados db
-const  dadosDb = () => {
+function  dadosDb() {
   nome = document.querySelector("#nome").value
   cpf = document.querySelector("#cpf").value
   email = document.querySelector("#email").value
