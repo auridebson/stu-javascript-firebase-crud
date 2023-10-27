@@ -77,6 +77,7 @@ document.getElementById("delete").onclick = function () {
 // ---------------------------------------------------
 
 const btnTeste = document.querySelector("#teste")
+
 let nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone
 
 // Carrega dados db
@@ -104,6 +105,7 @@ function carregaDados() {
     sexo = dado.val().sexo
     telefone = dado.val().telefone
     console.log(nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone)
+    
     // Carrega os campos da página com os dados do banco de dados
     document.querySelector("#nome").value = nome
     document.querySelector("#email").value = email
