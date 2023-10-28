@@ -32,3 +32,17 @@ button {
   border-radius: 10px;
 }
 
+.container-cards {
+  background-color: #e5dbdbcd;
+  margin: 10px;
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container-card-aluno {
+  background-color: #a7e881c4;
+  padding: 5px;
+  border-radius: 6px;
+}

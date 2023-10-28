@@ -77,6 +77,7 @@ document.getElementById("delete").onclick = function () {
 // ---------------------------------------------------
 
 const btnTeste = document.querySelector("#teste")
+const containerCard = document.querySelector(".container-card-aluno")
 
 let nome, cpf, email, dataNascimento, academia, graduacao, sexo, telefone, endereco
 
@@ -120,13 +121,19 @@ function carregaDados() {
 
       firebase.database().ref("dbKravmaga/").on("value", function(idsAlunos) {
         let Alunos = idsAlunos.val()
+        let nomeAluno = Alunox[11]
+        console.log(nomeAluno)
 
         for (let idCpf in Alunos) {
           console.log('\n--------------------\n'+idCpf+'\n--------------------\n')
+          containerCard.innerHTML += `<p>&nbsp</p><p>CPF: ${idCpf}</p>`
           firebase.database().ref("dbKravmaga/"+idCpf).on("value", function(dadosAluno) {
             let dadosCpf = dadosAluno.val()
 
             for (i in dadosCpf) {
+              containerCard.innerHTML += "<ul>"
+              containerCard.innerHTML += `<li> ${i}:${dadosCpf[i]}</li>`
+              containerCard.innerHTML += "</ul>"
               console.log(i + " - "+ dadosCpf[i])
             }
           })
@@ -138,19 +145,6 @@ function carregaDados() {
     })
   }
 
-
-
-  
-
-
-// ------------------------ Carregando dados de um nó em um Objeto ------------------------
-// function dadosObj() {
-//   dadosDb()
-//   firebase.database().ref("dbKravmaga/"+cpf).on('value', function(snapshot) {
-//     let dados = snapshot.val()
-//     console.log(dados)
-//   })
-// }
 
 
 
