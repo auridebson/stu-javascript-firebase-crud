@@ -121,11 +121,11 @@ function carregaDados() {
 
       firebase.database().ref("dbKravmaga/").on("value", function(idsAlunos) {
         let Alunos = idsAlunos.val()
-        let nomeAluno = Alunox[11]
-        console.log(nomeAluno)
 
         for (let idCpf in Alunos) {
-          console.log('\n--------------------\n'+idCpf+'\n--------------------\n')
+          console.log(" - - - - - - - - - - - ")
+          console.log(Alunos[idCpf].nome)
+          console.log(" - - - - - - - - - - - ")
           containerCard.innerHTML += `<p>&nbsp</p><p>CPF: ${idCpf}</p>`
           firebase.database().ref("dbKravmaga/"+idCpf).on("value", function(dadosAluno) {
             let dadosCpf = dadosAluno.val()
@@ -134,7 +134,7 @@ function carregaDados() {
               containerCard.innerHTML += "<ul>"
               containerCard.innerHTML += `<li> ${i}:${dadosCpf[i]}</li>`
               containerCard.innerHTML += "</ul>"
-              console.log(i + " - "+ dadosCpf[i])
+              console.log(i +": "+ dadosCpf[i])
             }
           })
           
