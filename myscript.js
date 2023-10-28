@@ -121,11 +121,25 @@ function carregaDados() {
 
       firebase.database().ref("dbKravmaga/").on("value", function(idsAlunos) {
         let Alunos = idsAlunos.val()
+        let contaNome = 0
 
         for (let idCpf in Alunos) {
           console.log(" - - - - - - - - - - - ")
           console.log(Alunos[idCpf].nome)
           console.log(" - - - - - - - - - - - ")
+          contaNome ++
+          if (Alunos[idCpf] = 'nome') {
+            alert(contaNome)
+          }
+          // for (i in Alunos) {
+          //   contaNome ++
+          //   if (Alunos[i] = 'nome') {
+          //     alert(`Contagem do nome ${contaNome}`)
+          //   }
+          // }
+
+
+
           containerCard.innerHTML += `<p>&nbsp</p><p>CPF: ${idCpf}</p>`
           firebase.database().ref("dbKravmaga/"+idCpf).on("value", function(dadosAluno) {
             let dadosCpf = dadosAluno.val()
